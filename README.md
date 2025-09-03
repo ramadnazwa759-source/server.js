@@ -1,3 +1,5 @@
+CRUD UNTUK /movies dan /directors.
+
 const express = require('express');
 const app = express();
 const port = 3100;
@@ -47,7 +49,6 @@ app.post('/movies', (req, res) => {
     res.status(201).json(newMovie);
 });
 
-
 // PUT /movies/:id - Memperbarui data film
 app.put('/movies/:id', (req, res) => {
     const id = Number(req.params.id);
@@ -73,7 +74,7 @@ app.delete('/movies/:id', (req, res) => {
 });
 
 
-// CRUD directors
+// CRUD directors atau Sutradara
 
 let directors = [
     { id: 1, name : 'Christopher Nolan', birthYear : 1900 },
@@ -119,6 +120,7 @@ app.put('/directors/:id', (req, res) => {
      res.json(updatedDirectors);
   });
 
+  // untuk menghapus data sutradara
   app.delete('/directors/:id', (req, res) => {
   const id = Number(req.params.id);
   const directorsIndex = directors.findIndex(d => d.id === id);
@@ -128,7 +130,6 @@ app.put('/directors/:id', (req, res) => {
      directors.splice(directorsIndex, 1);
      res.status(204).send();
 });
-
 
 app.listen(port, () => {
     console.log(`Server berjalan di http://localhost:${port}`);
